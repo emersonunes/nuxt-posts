@@ -12,12 +12,7 @@
                 <h1>Newest Posts</h1>
                 <hr />
               </div>
-              <post-item
-              v-for="post in posts"
-              :key="post._id"
-              :title="post.title"
-              :subtitle="post.subtitle"
-              :date="post.createdAt" />
+              <post-item v-for="post in posts" :key="post._id" :title="post.title" :subtitle="post.subtitle" :date="post.createdAt" :isRead="post.isRead" />
             </div>
             <!-- end of post -->
           </div>
@@ -32,6 +27,7 @@
 <script>
 import Navbar from '~/components/Navbar'
 import PostItem from '~/components/PostItem'
+import { fetchPostsAPI } from '~/store/post'
 export default {
   components: {
     Navbar,
@@ -40,36 +36,42 @@ export default {
   data () {
     return {
       title: 'My Title From Page',
-      posts: [{
-        _id: '1',
-        title: 'My first Post',
-        subtitle: 'My first subtitle',
-        createdAt: new Date()
-      },
-      {
-        _id: '2',
-        title: 'My second Post',
-        subtitle: 'My Second Subtitle',
-        createdAt: new Date()
+      form: {
+        title: 'some title',
+        subtitle: 'some subtitle'
       }
-      ]
+    }
+  },
+  // async asyncData () {
+  //   const posts = await fetchPostsAPI()
+  //   return { posts }
+  // },
+  // mounted () {
+  //   this.$store.dispatch('post/fetchPosts')
+  //     .then((posts) => {
+  //     })
+  // },
+  fetch ({ store }) {
+    if (store.getters['post/hasEmptyItems']) {
+      return store.dispatch('post/fetchPosts')
+    }
+  },
+  computed: {
+    posts () {
+      return this.$store.state.post.items
+    }
+  },
+  methods: {
+    isFormValid () {
+      if (this.form.title) {
+        return true
+      }
+      return false
     }
   }
 }
 </script>
 
-<style>
-.post-content {
-  font-style: italic;
-}
+<style scoped>
 
-.post {
-  margin-bottom: 20px;
-  padding: 5px;
-  border-bottom: 2px solid transparent;
-}
-
-.post:hover {
-  border-bottom: 2px solid #e8e8e8;
-}
 </style>
