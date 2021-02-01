@@ -6,17 +6,17 @@ export default {
       lang: 'en'
     },
     meta: [{
-      charset: 'utf-8'
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    },
-    {
-      hid: 'description',
-      name: 'description',
-      content: ''
-    }
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: ''
+      }
     ],
     link: [{
       rel: 'icon',
@@ -36,7 +36,9 @@ export default {
     '@/assets/css/main.scss'
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{
+    src: '~/plugins/filters.js'
+  }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

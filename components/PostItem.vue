@@ -5,7 +5,7 @@
       <h5 class="subtitle is-5">{{ subtitle }}</h5>
     </a>
     <div class="post-content">
-      by Emerson Nunes, {{moment(date).format('LL')}}
+      by Emerson Nunes, {{date | formatDate}}
     </div>
   </div>
 </template>
@@ -13,9 +13,6 @@
 <script>
 import moment from 'moment'
 export default {
-  data: () => ({
-    moment: moment
-  }),
   props: {
     title: {
       type: String,
