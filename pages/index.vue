@@ -10,26 +10,13 @@
             <div class="section">
               <div class="title">
                 <h1>Newest Posts</h1>
-                <hr>
+                <hr />
               </div>
-              <div class="post">
-                <a class="post-header post-header-link clickable">
-                  <h4 class="title is-4">Some Title</h4>
-                  <h5 class="subtitle is-5">Some Subtitle</h5>
-                </a>
-                <div class="post-content">
-                  by Filip Jerga, 27th Jan, 2019
-                </div>
-              </div>
-              <div class="post">
-                <a class="post-header post-header-link clickable">
-                  <h4 class="title is-4">Some Title</h4>
-                  <h5 class="subtitle is-5">Some Subtitle</h5>
-                </a>
-                <div class="post-content">
-                  by Filip Jerga, 27th Jan, 2019
-                </div>
-              </div>
+              <post-item
+              v-for="post in posts"
+              :key="post._id"
+              :title="post.title"
+              :subtitle="post.subtitle" />
             </div>
             <!-- end of post -->
           </div>
@@ -42,10 +29,28 @@
 </template>
 
 <script>
-import Navbar from '~/components/Navbar';
+import Navbar from '~/components/Navbar'
+import PostItem from '~/components/PostItem'
 export default {
   components: {
     Navbar,
+    PostItem
+  },
+  data () {
+    return {
+      title: 'My Title From Page',
+      posts: [{
+        _id: '1',
+        title: 'My first Post',
+        subtitle: 'My first subtitle'
+      },
+      {
+        _id: '2',
+        title: 'My second Post',
+        subtitle: 'My Second Subtitle'
+      }
+      ]
+    }
   }
 }
 </script>
