@@ -16,7 +16,8 @@
               v-for="post in posts"
               :key="post._id"
               :title="post.title"
-              :subtitle="post.subtitle" />
+              :subtitle="post.subtitle"
+              :date="post.createdAt" />
             </div>
             <!-- end of post -->
           </div>
@@ -42,12 +43,14 @@ export default {
       posts: [{
         _id: '1',
         title: 'My first Post',
-        subtitle: 'My first subtitle'
+        subtitle: 'My first subtitle',
+        createdAt: new Date()
       },
       {
         _id: '2',
         title: 'My second Post',
-        subtitle: 'My Second Subtitle'
+        subtitle: 'My Second Subtitle',
+        createdAt: new Date()
       }
       ]
     }
